@@ -17,6 +17,13 @@ public class Cuadrante
     int costo =1 ;
     int heuristico=0;
 
+    public Cuadrante(String coordenada, int x, int y) {
+        this.coordenada = coordenada;
+        this.x = x;
+        this.y = y;
+    }
+    
+
     public String getCoordenada() {
         return coordenada;
     }
