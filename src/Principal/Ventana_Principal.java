@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author Administrador
+ * @author Grupo Ipp A*
  */
 public class Ventana_Principal extends javax.swing.JFrame {
 

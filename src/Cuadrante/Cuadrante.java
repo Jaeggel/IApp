@@ -7,7 +7,7 @@ package Cuadrante;
 
 /**
  *
- * @author Grupo 1
+ * @author Grupo Ipp A*
  */
 public class Cuadrante 
 {
