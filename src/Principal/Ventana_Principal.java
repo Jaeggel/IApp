@@ -463,6 +463,8 @@ public class Ventana_Principal extends javax.swing.JFrame {
         cleanButtons(btn31);
         cleanButtons(bnt32);
         cleanButtons(btn33);
+        Proceso.lstCF.clear();
+        Proceso.lstCI.clear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void cleanButtons(JButton btn)
