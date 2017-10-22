@@ -7,7 +7,7 @@ package Cuadrante;
 
 /**
  *
- * @author Joel
+ * @author Grupo IApp A*
  */
 public class CuadranteInicioFin extends Cuadrante{
     public CuadranteInicioFin(String coordenada, int x, int y)

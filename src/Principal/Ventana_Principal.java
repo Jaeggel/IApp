@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 
 /**
  *
- * @author Grupo Ipp A*
+ * @author Grupo IApp A*
  */
 public class Ventana_Principal extends javax.swing.JFrame {
 

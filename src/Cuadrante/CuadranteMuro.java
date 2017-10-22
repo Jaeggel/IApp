@@ -7,7 +7,7 @@ package Cuadrante;
 
 /**
  *
- * @author Joel
+ * @author Grupo IApp A*
  */
 public class CuadranteMuro extends Cuadrante{
     public CuadranteMuro(String coordenada, int x, int y)
