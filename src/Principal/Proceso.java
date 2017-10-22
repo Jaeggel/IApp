@@ -5,8 +5,8 @@
  */
 package Principal;
 
-import Cuadrante.CuadranteFinal;
-import Cuadrante.CuadranteInicio;
+import Cuadrante.CuadranteMuro;
+import Cuadrante.CuadranteInicioFin;
 import java.util.ArrayList;
 
 /**
@@ -15,41 +15,41 @@ import java.util.ArrayList;
  */
 public class Proceso 
 {
-    static ArrayList<CuadranteInicio> lstCI=new ArrayList<CuadranteInicio>();
-    static ArrayList<CuadranteFinal> lstCF=new ArrayList<CuadranteFinal>();
+    static ArrayList<CuadranteInicioFin> lstCIF=new ArrayList<CuadranteInicioFin>();
+    static ArrayList<CuadranteMuro> lstCM=new ArrayList<CuadranteMuro>();
     
-    public CuadranteInicio setCI(String btnName)
+    public CuadranteInicioFin setCIF(String btnName)
     {
         String coordenada=btnName.trim();
         String aux=coordenada.split("[\\(||//)]")[1].toString();
         int x=Integer.parseInt(aux.split(";")[0].toString());
         int y=Integer.parseInt(aux.split(";")[1].toString());
-        CuadranteInicio ci=new CuadranteInicio(btnName, x, y);
-        ci.setCoordenada(coordenada);
-        ci.setX(x);
-        ci.setY(y);
-        return ci;
+        CuadranteInicioFin cif=new CuadranteInicioFin(btnName, x, y);
+        cif.setCoordenada(coordenada);
+        cif.setX(x);
+        cif.setY(y);
+        return cif;
     }
-    public CuadranteFinal setCF(String btnName)
+    public CuadranteMuro setCM(String btnName)
     {
         String coordenada=btnName.trim();
         String aux=coordenada.split("[\\(||//)]")[1].toString();
         int x=Integer.parseInt(aux.split(";")[0].toString());
         int y=Integer.parseInt(aux.split(";")[1].toString());
-        CuadranteFinal cf=new CuadranteFinal(btnName, x, y);
-        cf.setCoordenada(coordenada);
-        cf.setX(x);
-        cf.setY(y);
-        return cf;
+        CuadranteMuro cm=new CuadranteMuro(btnName, x, y);
+        cm.setCoordenada(coordenada);
+        cm.setX(x);
+        cm.setY(y);
+        return cm;
     }
-    public ArrayList<CuadranteInicio> setLstCI(CuadranteInicio ci)
+    public ArrayList<CuadranteInicioFin> setLstCI(CuadranteInicioFin ci)
     {
-        lstCI.add(ci);
-        return lstCI;
+        lstCIF.add(ci);
+        return lstCIF;
     }
-    public ArrayList<CuadranteFinal> setLstCF(CuadranteFinal cf)
+    public ArrayList<CuadranteMuro> setLstCF(CuadranteMuro cm)
     {
-        lstCF.add(cf);
-        return lstCF;
+        lstCM.add(cm);
+        return lstCM;
     }
 }

@@ -9,10 +9,9 @@ package Cuadrante;
  *
  * @author Joel
  */
-public class CuadranteFinal extends Cuadrante{
-    public CuadranteFinal(String coordenada, int x, int y)
+public class CuadranteInicioFin extends Cuadrante{
+    public CuadranteInicioFin(String coordenada, int x, int y)
     {
         super(coordenada,x,y);
     }
-    
 }

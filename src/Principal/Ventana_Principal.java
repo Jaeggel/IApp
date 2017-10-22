@@ -5,8 +5,8 @@
  */
 package Principal;
 
-import Cuadrante.CuadranteFinal;
-import Cuadrante.CuadranteInicio;
+import Cuadrante.CuadranteMuro;
+import Cuadrante.CuadranteInicioFin;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -463,8 +463,8 @@ public class Ventana_Principal extends javax.swing.JFrame {
         cleanButtons(btn31);
         cleanButtons(bnt32);
         cleanButtons(btn33);
-        Proceso.lstCF.clear();
-        Proceso.lstCI.clear();
+        Proceso.lstCIF.clear();
+        Proceso.lstCM.clear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void cleanButtons(JButton btn)
@@ -477,7 +477,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         if(cont<=2)
         {
             btn.setBackground(java.awt.Color.GREEN); 
-            ArrayList<CuadranteInicio> lst= obj.setLstCI(obj.setCI(btn.getText()));
+            ArrayList<CuadranteInicioFin> lstCIF= obj.setLstCI(obj.setCIF(btn.getText()));
         }else
         {
             if(btn.getBackground().toString().trim().equals("java.awt.Color[r=0,g=255,b=0]"))
@@ -486,7 +486,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
             }else
             {
                 btn.setBackground(java.awt.Color.RED);       
-                ArrayList<CuadranteFinal> lstF= obj.setLstCF(obj.setCF(btn.getText()));
+                ArrayList<CuadranteMuro> lstM= obj.setLstCF(obj.setCM(btn.getText()));
             }
         }
     }
