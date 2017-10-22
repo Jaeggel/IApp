@@ -362,7 +362,24 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
-        // TODO add your handling code here:
+        // Código de buscar la respuesta.
+        
+        Manhattan obj= new Manhattan();
+        
+        ArrayList<CuadranteInicioFin> listaInicioFin=Proceso.lstCIF;
+        ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;
+        
+        
+        //entrego los dos puntos el de inicio y fin
+        obj.distanciaPuntos(listaInicioFin.get(0), listaInicioFin.get(1));
+        
+        
+        
+        for (int i = 0; i < listaMuros.size(); i++) {
+            CuadranteMuro get = listaMuros.get(i);
+            System.out.println(get);
+        }
+        
     }//GEN-LAST:event_btnProcesarActionPerformed
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
