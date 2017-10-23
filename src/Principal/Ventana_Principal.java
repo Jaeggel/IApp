@@ -373,25 +373,19 @@ public class Ventana_Principal extends javax.swing.JFrame {
         Manhattan obj= new Manhattan();
         
         ArrayList<CuadranteInicioFin> listaInicioFin=Proceso.lstCIF;
-        ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;
+        /*ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;*/
         
         
-        //Heuristico con manhatan
+        //Heuristico con manhatan a punto inicial
         int manhattan=obj.distanciaPuntos(listaInicioFin.get(0), listaInicioFin.get(1));
         listaInicioFin.get(0).setHeuristico(manhattan);
-        
-        
-        
-        for (int i = 0; i < listaMuros.size(); i++) {
-            CuadranteMuro get = listaMuros.get(i);
-            System.out.println(get);
-        }
-        
-        System.out.println("CUADRANTE NO SELECCIONADO");
+         
+        //Agregando heuristicos a puntos que no han sido seleccionados
         for (CuadranteNoSeleccionado elemento : lstNull()) {
-            System.out.println(elemento.getCoordenada());
+            manhattan=obj.distanciaPuntos2(elemento, listaInicioFin.get(1));
+            elemento.setHeuristico(manhattan);
         }
-        System.out.println("----------");
+        
     }//GEN-LAST:event_btnProcesarActionPerformed
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
