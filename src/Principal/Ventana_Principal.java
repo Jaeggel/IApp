@@ -5,13 +5,16 @@
  */
 package Principal;
 
+import Cuadrante.Cuadrante;
 import Cuadrante.CuadranteMuro;
 import Cuadrante.CuadranteInicioFin;
+import Cuadrante.CuadranteNoSeleccionado;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,6 +31,10 @@ public class Ventana_Principal extends javax.swing.JFrame {
      * Creates new form Ventana_Principal
      */
     int cont=0;
+    String [] elementos={"(0;0)","(0;1)","(0;2)","(0;3)","(1;0)","(1;1)","(1;2)","(1;3)","(2;0)","(2;1)","(2;2)","(2;3)","(3;0)","(3;1)","(3;2)","(3;3)"};
+    ArrayList<CuadranteInicioFin> lstCIF=null;
+    ArrayList<CuadranteMuro> lstM=null;
+    ArrayList<CuadranteNoSeleccionado> lstNull=null;
     public Ventana_Principal() {
         initComponents();
         insertImage();
@@ -363,7 +370,6 @@ public class Ventana_Principal extends javax.swing.JFrame {
 
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
         // Código de buscar la respuesta.
-        
         Manhattan obj= new Manhattan();
         
         ArrayList<CuadranteInicioFin> listaInicioFin=Proceso.lstCIF;
@@ -381,6 +387,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
             System.out.println(get);
         }
         
+        System.out.println("CUADRANTE NO SELECCIONADO");
+        for (CuadranteNoSeleccionado elemento : lstNull()) {
+            System.out.println(elemento.getCoordenada());
+        }
+        System.out.println("----------");
     }//GEN-LAST:event_btnProcesarActionPerformed
 
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
@@ -483,6 +494,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         cleanButtons(btn33);
         Proceso.lstCIF.clear();
         Proceso.lstCM.clear();
+        Proceso.lstNS.clear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void cleanButtons(JButton btn)
@@ -495,7 +507,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         if(cont<=2)
         {
             btn.setBackground(java.awt.Color.GREEN); 
-            ArrayList<CuadranteInicioFin> lstCIF= obj.setLstCI(obj.setCIF(btn.getText()));
+            lstCIF= obj.setLstCI(obj.setCIF(btn.getText()));
         }else
         {
             if(btn.getBackground().toString().trim().equals("java.awt.Color[r=0,g=255,b=0]"))
@@ -504,10 +516,56 @@ public class Ventana_Principal extends javax.swing.JFrame {
             }else
             {
                 btn.setBackground(java.awt.Color.RED);       
-                ArrayList<CuadranteMuro> lstM= obj.setLstCF(obj.setCM(btn.getText()));
+                lstM= obj.setLstCF(obj.setCM(btn.getText()));
             }
         }
     }
+    public ArrayList<CuadranteNoSeleccionado> lstNull()
+    {
+        ArrayList<String> lstAll=new ArrayList <String>();
+        lstAll.add("(0;0)");lstAll.add("(0;1)");lstAll.add("(0;2)");lstAll.add("(0;3)");
+        lstAll.add("(1;0)");lstAll.add("(1;1)");lstAll.add("(1;2)");lstAll.add("(1;3)");
+        lstAll.add("(2;0)");lstAll.add("(2;1)");lstAll.add("(2;2)");lstAll.add("(2;3)");
+        lstAll.add("(3;0)");lstAll.add("(3;1)");lstAll.add("(3;2)");lstAll.add("(3;3)");
+        ArrayList<Integer> pos=new ArrayList <Integer>();
+        for (int i = 0; i < lstM.size(); i++)		
+        {	
+            for (int j = 0; j < elementos.length; j++) {
+                if(lstM.get(i).getCoordenada().equals(elementos[j]))
+                {
+                   pos.add(j);
+                }
+            }
+        }
+        for (int i = 0; i < lstCIF.size(); i++)		
+        {	
+            for (int j = 0; j < elementos.length; j++) {
+                if(lstCIF.get(i).getCoordenada().equals(elementos[j]))
+                {
+                   pos.add(j);
+                }
+            }
+        }
+        Collections.sort(pos);
+        int i=0;
+        for (Integer item : pos) {
+            if(i==0)
+            {
+                lstAll.remove(Integer.parseInt(item.toString()));
+            }else{
+                lstAll.remove(Integer.parseInt(item.toString())-i);
+            }
+            i++;
+        }
+        
+        Proceso obj=new Proceso();
+        
+        for (String item: lstAll) {
+            lstNull= obj.setLstNS(obj.setNS(item));
+        }
+        return lstNull;
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -7,6 +7,7 @@ package Principal;
 
 import Cuadrante.CuadranteMuro;
 import Cuadrante.CuadranteInicioFin;
+import Cuadrante.CuadranteNoSeleccionado;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +18,7 @@ public class Proceso
 {
     static ArrayList<CuadranteInicioFin> lstCIF=new ArrayList<CuadranteInicioFin>();
     static ArrayList<CuadranteMuro> lstCM=new ArrayList<CuadranteMuro>();
+    static ArrayList<CuadranteNoSeleccionado> lstNS=new ArrayList<CuadranteNoSeleccionado>();
     
     public CuadranteInicioFin setCIF(String btnName)
     {
@@ -42,6 +44,18 @@ public class Proceso
         cm.setY(y);
         return cm;
     }
+    public CuadranteNoSeleccionado setNS(String item)
+    {
+        String coordenada=item.trim();
+        String aux=coordenada.split("[\\(||//)]")[1].toString();
+        int x=Integer.parseInt(aux.split(";")[0].toString());
+        int y=Integer.parseInt(aux.split(";")[1].toString());
+        CuadranteNoSeleccionado ns=new CuadranteNoSeleccionado(item, x, y);
+        ns.setCoordenada(coordenada);
+        ns.setX(x);
+        ns.setY(y);
+        return ns;
+    }
     public ArrayList<CuadranteInicioFin> setLstCI(CuadranteInicioFin ci)
     {
         lstCIF.add(ci);
@@ -55,5 +69,10 @@ public class Proceso
         /*Observar cuadrantes de muros
         System.out.println("ci: "+cm.getCoordenada());*/
         return lstCM;
+    }
+    public ArrayList<CuadranteNoSeleccionado> setLstNS(CuadranteNoSeleccionado ns)
+    {
+        lstNS.add(ns);
+        return lstNS;
     }
 }
