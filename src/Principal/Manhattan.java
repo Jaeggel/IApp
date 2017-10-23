@@ -12,7 +12,7 @@ public class Manhattan {
         int q2=q.getY();
         int p2=p.getY();
         
-        //Segpun formula Daniel
+        //Según formula Daniel
         //valor absuluto op1
         int op1=q1-p1;
         if(op1<0)

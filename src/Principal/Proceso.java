@@ -45,15 +45,15 @@ public class Proceso
     public ArrayList<CuadranteInicioFin> setLstCI(CuadranteInicioFin ci)
     {
         lstCIF.add(ci);
-        //Observar cuadrantes Inicio Fin
-        System.out.println("ci: "+ci.getCoordenada());
+        /*Observar cuadrantes Inicio Fin
+        System.out.println("ci: "+ci.getCoordenada());*/
         return lstCIF;
     }
     public ArrayList<CuadranteMuro> setLstCF(CuadranteMuro cm)
     {
         lstCM.add(cm);
-        //Observar cuadrantes de muros
-        System.out.println("ci: "+cm.getCoordenada());
+        /*Observar cuadrantes de muros
+        System.out.println("ci: "+cm.getCoordenada());*/
         return lstCM;
     }
 }

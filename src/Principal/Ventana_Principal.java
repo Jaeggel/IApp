@@ -370,8 +370,9 @@ public class Ventana_Principal extends javax.swing.JFrame {
         ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;
         
         
-        //entrego los dos puntos el de inicio y fin
-        obj.distanciaPuntos(listaInicioFin.get(0), listaInicioFin.get(1));
+        //Heuristico con manhatan
+        int manhattan=obj.distanciaPuntos(listaInicioFin.get(0), listaInicioFin.get(1));
+        listaInicioFin.get(0).setHeuristico(manhattan);
         
         
         
