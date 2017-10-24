@@ -373,8 +373,9 @@ public class Ventana_Principal extends javax.swing.JFrame {
         Manhattan obj= new Manhattan();
         
         ArrayList<CuadranteInicioFin> listaInicioFin=Proceso.lstCIF;
-        /*ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;*/
-        
+        ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;
+        ArrayList<CuadranteNoSeleccionado> cuadranteNoS = Proceso.lstNS;
+
         
         //Heuristico con manhatan a punto inicial
         int manhattan=obj.distanciaPuntos(listaInicioFin.get(0), listaInicioFin.get(1));
@@ -386,8 +387,192 @@ public class Ventana_Principal extends javax.swing.JFrame {
             elemento.setHeuristico(manhattan);
         }
         
-    }//GEN-LAST:event_btnProcesarActionPerformed
+        
+        Proceso objProceso=new Proceso();
+        System.out.println("ELEMENTOS CRUZ");
+        //Se obtiene array de elementos adyacentes de la presente coordenada
+        //Se envia como parametro una cadena con la coordenada Ej: (2;1)
+        
+        String coordenadaInicial=listaInicioFin.get(0).getCoordenada();
+        System.out.println(listaInicioFin.get(0).getCoordenada()+" heuristico: "+listaInicioFin.get(0).getHeuristico());
+        int i=2;
+        boolean pass=false;
+        boolean pass2=false;
+        boolean pass3=false;
+        String cAlternativa="";
+        
+        while(i<10){
+            System.out.println("Rutina 1");
+        ArrayList<Cuadrante> pcuadrante = new ArrayList<Cuadrante>();
+        ArrayList<Cuadrante> cuadrante= objProceso.getCruz(coordenadaInicial);
+        for (CuadranteNoSeleccionado cuadranteNoS1 : cuadranteNoS) {
+            for (int j = 0; j < cuadrante.size(); j++) {
+                
+               if(!pass){
+                    if(cuadrante.get(j).getCoordenada().equals(cuadranteNoS1.getCoordenada())  ){
+                     System.out.println("cuadrante: "+cuadrante.get(j).getCoordenada()+" noS: "+cuadranteNoS1.getCoordenada()+" Heuristico: "+cuadranteNoS1.getHeuristico());
+                     pcuadrante.add(cuadranteNoS1);
+                    }
 
+                    if(cuadrante.get(j).getCoordenada().equals(listaInicioFin.get(1).getCoordenada())){
+                        System.out.println("Finalizo, encontro la solución");
+                        pass=true;
+                    }
+               }
+               
+            } 
+        }
+        
+        if(!pass){
+        int aux=0;
+        
+        for (int j = 0; j < pcuadrante.size(); j++) {
+            Cuadrante get = pcuadrante.get(j);
+            if(j==0){
+                aux=get.getHeuristico();
+                coordenadaInicial=get.getCoordenada();
+            }
+            if(j>0){
+   
+                if(aux==get.getHeuristico()){
+                pass2=true;
+                cAlternativa=get.getCoordenada();
+                
+                }
+
+                if(aux>get.getHeuristico()){
+                    aux=get.getHeuristico();
+                    coordenadaInicial=get.getCoordenada();
+                }
+ 
+            }
+        }
+        
+        System.out.println("Cuadrante escojido: "+coordenadaInicial+" menor por heuristico es: "+aux);
+        pintarSolucion(coordenadaInicial,java.awt.Color.GREEN);
+        System.out.println("Coordenada Objetivo: "+listaInicioFin.get(1).getCoordenada());
+        
+        
+        }
+        
+        if(pass2 && !pass3){       
+                pintarSolucion(cAlternativa,java.awt.Color.ORANGE);
+                System.out.println("Camino alternativo: "+cAlternativa);
+                subRutina(cAlternativa);
+                pass2=false;
+                pass3=true;
+        }
+        
+        
+        i++;
+        System.out.println("............");
+        }
+        
+        
+    }//GEN-LAST:event_btnProcesarActionPerformed
+    
+    public void subRutina(String co){
+        ArrayList<CuadranteInicioFin> listaInicioFin=Proceso.lstCIF;
+        ArrayList<CuadranteMuro> listaMuros = Proceso.lstCM;
+        ArrayList<CuadranteNoSeleccionado> cuadranteNoS = Proceso.lstNS;
+        Proceso objProceso=new Proceso();
+        String coordenadaInicial=co;
+        
+        
+        int i=2;
+        boolean pass=false;
+        
+        
+         
+        while(i<10){
+        System.out.println("Rutina 2");
+        ArrayList<Cuadrante> pcuadrante = new ArrayList<Cuadrante>();
+        ArrayList<Cuadrante> cuadrante= objProceso.getCruz(coordenadaInicial);
+        for (CuadranteNoSeleccionado cuadranteNoS1 : cuadranteNoS) {
+            for (int j = 0; j < cuadrante.size(); j++) {
+                
+               if(!pass){
+                    if(cuadrante.get(j).getCoordenada().equals(cuadranteNoS1.getCoordenada())  ){
+                     System.out.println("cuadrante: "+cuadrante.get(j).getCoordenada()+" noS: "+cuadranteNoS1.getCoordenada()+" Heuristico: "+cuadranteNoS1.getHeuristico());
+                     pcuadrante.add(cuadranteNoS1);
+                    }
+
+                    if(cuadrante.get(j).getCoordenada().equals(listaInicioFin.get(1).getCoordenada())){
+                        System.out.println("Finalizo, encontro la solución");
+                        pass=true;
+                    }
+               }
+               
+            } 
+        }
+        
+        if(!pass){
+        int aux=0;
+        
+        for (int j = 0; j < pcuadrante.size(); j++) {
+            Cuadrante get = pcuadrante.get(j);
+            if(j==0){
+                aux=get.getHeuristico();
+                coordenadaInicial=get.getCoordenada();
+            }
+            if(j>0){
+                if(aux>get.getHeuristico()){
+                    aux=get.getHeuristico();
+                    coordenadaInicial=get.getCoordenada();
+                }
+                
+                
+                
+            }
+        }
+        
+        System.out.println("Cuadrante escojido: "+coordenadaInicial+" menor por heuristico es: "+aux);
+        pintarSolucion(coordenadaInicial,java.awt.Color.ORANGE);
+        System.out.println("Coordenada Objetivo: "+listaInicioFin.get(1).getCoordenada());
+        System.out.println("............");
+        
+        }
+        
+        i++;
+        }
+    }
+    
+    public void pintarSolucion(String co, java.awt.Color color){
+    if(co.equals("(0;0)"))
+        btn00.setBackground(color); 
+    if(co.equals("(0;1)"))
+        btn01.setBackground(color);
+    if(co.equals("(0;2)"))
+        btn02.setBackground(color);
+    if(co.equals("(0;3)"))
+        btn03.setBackground(color);
+    if(co.equals("(1;0)"))
+        btn10.setBackground(color);
+    if(co.equals("(1;1)"))
+        btn11.setBackground(color);
+    if(co.equals("(1;2)"))
+        btn12.setBackground(color);
+    if(co.equals("(1;3)"))
+        btn13.setBackground(color);
+    if(co.equals("(2;0)"))
+        btn20.setBackground(color);
+    if(co.equals("(2;1)"))
+        btn21.setBackground(color);
+    if(co.equals("(2;2)"))
+        btn22.setBackground(color);
+    if(co.equals("(2;3)"))
+        btn23.setBackground(color);
+    if(co.equals("(3;0)"))
+        btn30.setBackground(color);
+    if(co.equals("(3;1)"))
+        btn31.setBackground(color);
+    if(co.equals("(3;2)"))
+        bnt32.setBackground(color);
+    if(co.equals("(3;3)"))
+        btn33.setBackground(color);
+
+    }
+    
     private void btn00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn00ActionPerformed
         cont++;
         changeColor(btn00);
@@ -498,14 +683,14 @@ public class Ventana_Principal extends javax.swing.JFrame {
     public void changeColor(JButton btn)
     {
         Proceso obj=new Proceso();
-        System.out.println("ELEMENTOS CRUZ");
+        /*System.out.println("ELEMENTOS CRUZ");
         //Se obtiene array de elementos adyacentes de la presente coordenada
         //Se envia como parametro una cadena con la coordenada Ej: (2;1)
         for (Cuadrante cuadrante : obj.getCruz(btn.getText())) {
             System.out.println(cuadrante.getCoordenada());
         }
         System.out.println("............");
-        
+        */
         if(cont<=2)
         {
             if(cont==1)
