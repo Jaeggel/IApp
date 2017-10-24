@@ -498,9 +498,23 @@ public class Ventana_Principal extends javax.swing.JFrame {
     public void changeColor(JButton btn)
     {
         Proceso obj=new Proceso();
+        System.out.println("ELEMENTOS CRUZ");
+        //Se obtiene array de elementos adyacentes de la presente coordenada
+        //Se envia como parametro una cadena con la coordenada Ej: (2;1)
+        for (Cuadrante cuadrante : obj.getCruz(btn.getText())) {
+            System.out.println(cuadrante.getCoordenada());
+        }
+        System.out.println("............");
+        
         if(cont<=2)
         {
-            btn.setBackground(java.awt.Color.GREEN); 
+            if(cont==1)
+            {
+                btn.setBackground(java.awt.Color.GREEN); 
+            }else
+            {
+                btn.setBackground(java.awt.Color.BLUE); 
+            }
             lstCIF= obj.setLstCI(obj.setCIF(btn.getText()));
         }else
         {

@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import Cuadrante.Cuadrante;
 import Cuadrante.CuadranteMuro;
 import Cuadrante.CuadranteInicioFin;
 import Cuadrante.CuadranteNoSeleccionado;
@@ -42,6 +43,91 @@ public class Proceso
         cm.setCoordenada(coordenada);
         cm.setX(x);
         cm.setY(y);
+        return cm;
+    }
+    public ArrayList<Cuadrante> getCruz(String coordenada)
+    {
+        ArrayList<Cuadrante> lst=new ArrayList<Cuadrante>();
+        String aux=coordenada.split("[\\(||//)]")[1].toString();
+        int x=Integer.parseInt(aux.split(";")[0].toString());
+        int y=Integer.parseInt(aux.split(";")[1].toString());
+        String coordTop="",coordBottom="",coordLeft="",coordRight="";
+        if(x==0)
+        {
+            if(y==0)
+            {
+                coordBottom="("+(x+1)+";"+(y)+")";
+                coordRight="("+(x)+";"+(y+1)+")";
+            }else if(y>0 && y<3)
+            {
+                coordRight="("+(x)+";"+(y+1)+")";
+                coordBottom="("+(x+1)+";"+(y)+")";
+                coordLeft="("+(x)+";"+(y-1)+")";
+            }else{
+                coordBottom="("+(x+1)+";"+(y)+")";
+                coordLeft="("+(x)+";"+(y-1)+")";
+            }
+        }else if(x>0 && x<3)
+        {
+            if(y==0)
+            {
+                coordTop="("+(x-1)+";"+(y)+")";
+                coordBottom="("+(x+1)+";"+(y)+")";
+                coordRight="("+(x)+";"+(y+1)+")";
+            }else if(y>0 && y<3)
+            {
+                coordRight="("+(x)+";"+(y+1)+")";
+                coordTop="("+(x-1)+";"+(y)+")";
+                coordBottom="("+(x+1)+";"+(y)+")";
+                coordLeft="("+(x)+";"+(y-1)+")";
+            }else{
+                coordTop="("+(x-1)+";"+(y)+")";
+                coordBottom="("+(x+1)+";"+(y)+")";
+                coordLeft="("+(x)+";"+(y-1)+")";
+            }
+        }else
+        {
+            if(y==0)
+            {
+                coordTop="("+(x-1)+";"+(y)+")";
+                coordRight="("+(x)+";"+(y+1)+")";
+            }else if(y>0 && y<3)
+            {
+                coordRight="("+(x)+";"+(y+1)+")";
+                coordTop="("+(x-1)+";"+(y)+")";
+                coordLeft="("+(x)+";"+(y-1)+")";
+            }else{
+                coordTop="("+(x-1)+";"+(y)+")";
+                coordLeft="("+(x)+";"+(y-1)+")";
+            }
+        }
+        if(!coordTop.equals(""))
+        {
+            lst.add(setCruzObject(coordTop));
+        }
+        if(!coordBottom.equals(""))
+        {
+            lst.add(setCruzObject(coordBottom));
+        }
+        if(!coordLeft.equals(""))
+        {
+            lst.add(setCruzObject(coordLeft));
+        }
+        if(!coordRight.equals(""))
+        {
+            lst.add(setCruzObject(coordRight));
+        }
+    return lst;
+    }
+    public Cuadrante setCruzObject(String coord)
+    {
+        Cuadrante cm=new Cuadrante("", 0, 0);
+        String aux=coord.split("[\\(||//)]")[1].toString();
+        int x=Integer.parseInt(aux.split(";")[0].toString());
+        int y=Integer.parseInt(aux.split(";")[1].toString());
+        cm.setCoordenada(coord);
+        cm.setX(x);
+        cm.setY(y);   
         return cm;
     }
     public CuadranteNoSeleccionado setNS(String item)
