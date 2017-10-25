@@ -119,6 +119,9 @@ public class Proceso
         }
     return lst;
     }
+    
+   
+    
     public Cuadrante setCruzObject(String coord)
     {
         Cuadrante cm=new Cuadrante("", 0, 0);
